@@ -1,7 +1,7 @@
 import Foundation
-import class GuglielmoConnectSDK.GuglielmoConnectSDK
+import GuglielmoConnectSDK
 
-typealias GCSDK = GuglielmoConnectSDK
+typealias GCSDK = GuglielmoConnectSDK.GuglielmoConnectSDK
 
 @objc(WifiSDKPlugin)
 class WifiSDKPlugin: CDVPlugin {

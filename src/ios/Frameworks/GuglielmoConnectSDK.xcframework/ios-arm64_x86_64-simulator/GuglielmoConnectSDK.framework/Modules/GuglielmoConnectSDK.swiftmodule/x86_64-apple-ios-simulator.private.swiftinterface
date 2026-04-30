@@ -1,0 +1,19 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2.4 effective-5.10 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)
+// swift-module-flags: -target x86_64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -module-name GuglielmoConnectSDK
+import Foundation
+import NetworkExtension
+import SystemConfiguration
+import CoreLocation
+
+public class GuglielmoConnectSDK {
+  public static let instance: GuglielmoConnectSDK
+  public func initialize(username: Swift.String, password: Swift.String)
+  public func isSuggestedNetworkAlreadyAdded(completion: @escaping (Swift.Bool, GuglielmoConnectSDK.ConnectResponse) -> Swift.Void)
+  public func askUserToAddSuggestedNetwork(userIdentifier: Swift.String, additionalInfo: [Swift.String : Swift.String]?, completion: @escaping (Swift.Bool, GuglielmoConnectSDK.ConnectResponse) -> Swift.Void)
+}
+
+public struct ConnectResponse {
+  public let message: Swift.String?
+  public let code: Swift.Int?
+}
