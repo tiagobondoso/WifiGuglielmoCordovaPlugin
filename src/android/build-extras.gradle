@@ -4,8 +4,11 @@ repositories {
     }
 }
 
+ext.cdvMinSdkVersion = 30
+
 android {
     defaultConfig {
+        minSdk 30
         minSdkVersion 30
     }
 }
