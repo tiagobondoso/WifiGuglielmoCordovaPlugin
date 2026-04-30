@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-wifi-sdk"
+        version="1.0.0">
+
+    <name>WifiSDKPlugin</name>
+    <description>Cordova plugin to integrate with WiFi SDK</description>
+    <license>MIT</license>
+    <keywords>cordova,wifi,sdk</keywords>
+
+    <js-module src="www/WifiSDKPlugin.js" name="WifiSDKPlugin">
+        <clobbers target="WifiSDKPlugin" />
+    </js-module>
+
+    <!-- Android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="WifiSDKPlugin">
+                <param name="android-package" value="com.plugin.wifisdk.WifiSDKPlugin" />
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+        </config-file>
+
+        <source-file src="src/android/WifiSDKPlugin.java" target-dir="src/com/plugin/wifisdk" />
+
+        <!-- GuglielmoConnectSDK AAR -->
+        <resource-file src="src/android/GuglielmoConnectSDK-release.aar" target="libs/GuglielmoConnectSDK-release.aar" />
+
+        <!-- AAR dependency config -->
+        <framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />
+    </platform>
+
+    <!-- iOS -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="WifiSDKPlugin">
+                <param name="ios-package" value="WifiSDKPlugin" />
+            </feature>
+        </config-file>
+
+        <!-- WiFi access entitlement -->
+        <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
+            <string>This app requires location access to connect to WiFi networks.</string>
+        </config-file>
+
+        <header-file src="src/ios/WifiSDKPlugin.h" />
+        <source-file src="src/ios/WifiSDKPlugin.m" />
+
+        <!-- GuglielmoConnectSDK XCFramework -->
+        <framework src="src/ios/Frameworks/GuglielmoConnectSDK.xcframework" custom="true" embed="true" />
+
+        <!-- Required system frameworks -->
+        <framework src="NetworkExtension.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="CoreLocation.framework" />
+
+        <!-- Enable Swift support -->
+        <preference name="UseSwiftLanguageVersion" value="5" />
+
+        <!-- Linker flag required by SDK docs -->
+        <config-file target="*-Info.plist" parent="ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES">
+            <string>YES</string>
+        </config-file>
+    </platform>
+
+</plugin>

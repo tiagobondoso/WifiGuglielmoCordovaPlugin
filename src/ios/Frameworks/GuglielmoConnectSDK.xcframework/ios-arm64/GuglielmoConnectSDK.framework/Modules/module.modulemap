@@ -1,0 +1,4 @@
+framework module GuglielmoConnectSDK {
+  header "GuglielmoConnectSDK-Swift.h"
+  requires objc
+}

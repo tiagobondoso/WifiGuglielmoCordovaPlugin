@@ -1,0 +1,21 @@
+{
+  "name": "cordova-plugin-wifi-sdk",
+  "version": "1.0.0",
+  "description": "Cordova plugin to integrate with WiFi SDK",
+  "cordova": {
+    "id": "cordova-plugin-wifi-sdk",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "wifi",
+    "sdk"
+  ],
+  "author": "",
+  "license": "MIT"
+}
