@@ -40,7 +40,9 @@
 
     <!-- iOS -->
     <platform name="ios">
-        <preference name="SwiftVersion" default="5.0" />
+        <config-file target="config.xml" parent="/*">
+            <preference name="SwiftVersion" value="5" />
+        </config-file>
 
         <config-file target="config.xml" parent="/*">
             <feature name="WifiSDKPlugin">
