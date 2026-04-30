@@ -1,10 +1,11 @@
 import Foundation
-import GuglielmoConnectSDK
-
-typealias GCSDK = GuglielmoConnectSDK.GuglielmoConnectSDK
+import class GuglielmoConnectSDK.GuglielmoConnectSDK
+import struct GuglielmoConnectSDK.ConnectResponse
 
 @objc(WifiSDKPlugin)
 class WifiSDKPlugin: CDVPlugin {
+
+    private let sdk = GuglielmoConnectSDK.instance
 
     @objc(initialize:)
     func initialize(command: CDVInvokedUrlCommand) {
@@ -16,7 +17,7 @@ class WifiSDKPlugin: CDVPlugin {
             return
         }
 
-        GCSDK.instance.initialize(username: username, password: password)
+        sdk.initialize(username: username, password: password)
 
         let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "SDK initialized")
         self.commandDelegate.send(result, callbackId: command.callbackId)
@@ -25,7 +26,7 @@ class WifiSDKPlugin: CDVPlugin {
     @objc(isNetworkAdded:)
     func isNetworkAdded(command: CDVInvokedUrlCommand) {
         self.commandDelegate.run(inBackground: {
-            GCSDK.instance.isSuggestedNetworkAlreadyAdded { alreadyAdded, response in
+            self.sdk.isSuggestedNetworkAlreadyAdded { alreadyAdded, response in
                 let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: alreadyAdded)
                 self.commandDelegate.send(result, callbackId: command.callbackId)
             }
@@ -44,7 +45,7 @@ class WifiSDKPlugin: CDVPlugin {
         let additionalInfo = options["additionalInfo"] as? [String: String]
 
         self.commandDelegate.run(inBackground: {
-            GCSDK.instance.askUserToAddSuggestedNetwork(
+            self.sdk.askUserToAddSuggestedNetwork(
                 userIdentifier: userId,
                 additionalInfo: additionalInfo
             ) { success, response in
