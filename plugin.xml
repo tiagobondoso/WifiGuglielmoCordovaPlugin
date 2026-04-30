@@ -32,9 +32,9 @@
         <source-file src="src/android/WifiSDKPlugin.java" target-dir="src/com/plugin/wifisdk" />
 
         <!-- GuglielmoConnectSDK AAR -->
-        <framework src="src/android/GuglielmoConnectSDK-release.aar" custom="true" />
+        <lib-file src="src/android/GuglielmoConnectSDK-release.aar" />
 
-        <!-- Extra dependencies required by the SDK -->
+        <!-- Gradle dependencies and config -->
         <framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />
     </platform>
 
