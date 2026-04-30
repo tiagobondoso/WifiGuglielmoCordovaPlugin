@@ -6,19 +6,19 @@ import NetworkExtension
 import SystemConfiguration
 import CoreLocation
 
-public class GuglielmoResponse {
-  public var responseType: Swift.String? { get }
-  public var message: Swift.String? { get }
-  public var errorCode: Swift.Int? { get }
-  public var errorMessage: Swift.String? { get }
-  public var statusCode: Swift.Int? { get }
+public final class GuglielmoResponse {
+  public final var responseType: Swift.String? { get }
+  public final var message: Swift.String? { get }
+  public final var errorCode: Swift.Int? { get }
+  public final var errorMessage: Swift.String? { get }
+  public final var statusCode: Swift.Int? { get }
   deinit
 }
 
-public class GuglielmoConnectSDK {
+public final class GuglielmoConnectSDK {
   public static var instance: GuglielmoConnectSDK { get }
-  public func initialize(username: Swift.String, password: Swift.String)
-  public func isSuggestedNetworkAlreadyAdded(completionHandler: @escaping (Swift.Bool, GuglielmoResponse) -> Swift.Void)
-  public func askUserToAddSuggestedNetwork(userIdentifier: Swift.String, additionalInfo: [Swift.String : Swift.String]?, completionHandler: @escaping (Swift.Bool, GuglielmoResponse) -> Swift.Void)
+  public final func initialize(username: Swift.String, password: Swift.String)
+  public final func isSuggestedNetworkAlreadyAdded(completionHandler: @escaping (Swift.Bool, GuglielmoResponse) -> Swift.Void)
+  public final func askUserToAddSuggestedNetwork(userIdentifier: Swift.String, additionalInfo: [Swift.String : Swift.String]?, completionHandler: @escaping (Swift.Bool, GuglielmoResponse) -> Swift.Void)
   deinit
 }
