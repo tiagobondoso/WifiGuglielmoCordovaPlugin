@@ -51,8 +51,7 @@
             <string>This app requires location access to connect to WiFi networks.</string>
         </config-file>
 
-        <header-file src="src/ios/WifiSDKPlugin.h" />
-        <source-file src="src/ios/WifiSDKPlugin.m" />
+        <source-file src="src/ios/WifiSDKPlugin.swift" />
 
         <!-- GuglielmoConnectSDK XCFramework -->
         <framework src="src/ios/Frameworks/GuglielmoConnectSDK.xcframework" custom="true" embed="true" />
