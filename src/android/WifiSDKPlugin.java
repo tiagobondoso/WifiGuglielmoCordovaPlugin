@@ -19,6 +19,8 @@ import java.util.Map;
 
 public class WifiSDKPlugin extends CordovaPlugin {
 
+    private GuglielmoConnectSDK sdk = GuglielmoConnectSDK.INSTANCE;
+
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
@@ -53,7 +55,7 @@ public class WifiSDKPlugin extends CordovaPlugin {
                 return;
             }
 
-            GuglielmoConnectSDK.initialize(
+            sdk.initialize(
                 cordova.getActivity().getApplicationContext(),
                 username,
                 password
@@ -67,7 +69,7 @@ public class WifiSDKPlugin extends CordovaPlugin {
 
     private void isNetworkAdded(JSONArray args, final CallbackContext callbackContext) {
         try {
-            GuglielmoConnectSDK.isSuggestedNetworkAlreadyAdded(
+            sdk.isSuggestedNetworkAlreadyAdded(
                 cordova.getActivity(),
                 new GuglielmoNetworkStatusListener() {
                     @Override
@@ -109,7 +111,7 @@ public class WifiSDKPlugin extends CordovaPlugin {
                 }
             }
 
-            GuglielmoConnectSDK.askUserToAddSuggestedNetwork(
+            sdk.askUserToAddSuggestedNetwork(
                 cordova.getActivity(),
                 userId,
                 extras,
