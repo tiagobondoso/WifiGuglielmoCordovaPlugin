@@ -40,6 +40,8 @@
 
     <!-- iOS -->
     <platform name="ios">
+        <preference name="SwiftVersion" default="5.0" />
+
         <config-file target="config.xml" parent="/*">
             <feature name="WifiSDKPlugin">
                 <param name="ios-package" value="WifiSDKPlugin" />
