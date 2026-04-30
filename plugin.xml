@@ -40,9 +40,7 @@
 
     <!-- iOS -->
     <platform name="ios">
-        <config-file target="config.xml" parent="/*">
-            <preference name="SwiftVersion" value="5" />
-        </config-file>
+        <hook type="after_plugin_install" src="hooks/set_swift_version.js" />
 
         <config-file target="config.xml" parent="/*">
             <feature name="WifiSDKPlugin">
