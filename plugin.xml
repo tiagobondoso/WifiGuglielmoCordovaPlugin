@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         id="cordova-plugin-wifi-sdk"
         version="1.0.0">
 
@@ -27,6 +28,7 @@
             <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
             <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
             <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-sdk tools:overrideLibrary="biz.guglielmo.android.connect" />
         </config-file>
 
         <source-file src="src/android/WifiSDKPlugin.java" target-dir="src/com/plugin/wifisdk" />
