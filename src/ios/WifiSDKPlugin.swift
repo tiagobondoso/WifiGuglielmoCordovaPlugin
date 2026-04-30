@@ -1,6 +1,6 @@
 import Foundation
 import class GuglielmoConnectSDK.GuglielmoConnectSDK
-import struct GuglielmoConnectSDK.ConnectResponse
+import class GuglielmoConnectSDK.GuglielmoResponse
 
 @objc(WifiSDKPlugin)
 class WifiSDKPlugin: CDVPlugin {
@@ -26,10 +26,10 @@ class WifiSDKPlugin: CDVPlugin {
     @objc(isNetworkAdded:)
     func isNetworkAdded(command: CDVInvokedUrlCommand) {
         self.commandDelegate.run(inBackground: {
-            self.sdk.isSuggestedNetworkAlreadyAdded { alreadyAdded, response in
+            self.sdk.isSuggestedNetworkAlreadyAdded(completionHandler: { alreadyAdded, response in
                 let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: alreadyAdded)
                 self.commandDelegate.send(result, callbackId: command.callbackId)
-            }
+            })
         })
     }
 
@@ -47,17 +47,17 @@ class WifiSDKPlugin: CDVPlugin {
         self.commandDelegate.run(inBackground: {
             self.sdk.askUserToAddSuggestedNetwork(
                 userIdentifier: userId,
-                additionalInfo: additionalInfo
-            ) { success, response in
-                if success {
-                    let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: true)
-                    self.commandDelegate.send(result, callbackId: command.callbackId)
-                } else {
-                    let message = response.message ?? "Failed to add network"
-                    let result = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: message)
-                    self.commandDelegate.send(result, callbackId: command.callbackId)
-                }
-            }
+                additionalInfo: additionalInfo,
+                completionHandler: { success, response in
+                    if success {
+                        let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: true)
+                        self.commandDelegate.send(result, callbackId: command.callbackId)
+                    } else {
+                        let message = response.message ?? "Failed to add network"
+                        let result = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: message)
+                        self.commandDelegate.send(result, callbackId: command.callbackId)
+                    }
+                })
         })
     }
 }
