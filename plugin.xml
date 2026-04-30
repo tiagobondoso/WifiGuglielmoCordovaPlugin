@@ -62,9 +62,6 @@
         <framework src="SystemConfiguration.framework" />
         <framework src="CoreLocation.framework" />
 
-        <!-- Enable Swift support -->
-        <preference name="UseSwiftLanguageVersion" value="5" />
-
         <!-- Linker flag required by SDK docs -->
         <config-file target="*-Info.plist" parent="ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES">
             <string>YES</string>
