@@ -4,6 +4,12 @@ repositories {
     }
 }
 
+android {
+    defaultConfig {
+        minSdkVersion 30
+    }
+}
+
 dependencies {
     implementation(name: 'GuglielmoConnectSDK-release', ext: 'aar')
     implementation 'com.google.code.gson:gson:2.11.0'
