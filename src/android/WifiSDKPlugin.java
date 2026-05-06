@@ -38,6 +38,9 @@ public class WifiSDKPlugin extends CordovaPlugin {
             case "addNetwork":
                 this.addNetwork(args, callbackContext);
                 return true;
+            case "removeNetwork":
+                this.removeNetwork(args, callbackContext);
+                return true;
             default:
                 callbackContext.error("Action not recognized: " + action);
                 return false;
@@ -129,6 +132,27 @@ public class WifiSDKPlugin extends CordovaPlugin {
             );
         } catch (Exception e) {
             callbackContext.error("Error adding network: " + e.getMessage());
+        }
+    }
+
+    private void removeNetwork(JSONArray args, final CallbackContext callbackContext) {
+        try {
+            JSONObject options = args.optJSONObject(0);
+            String userId = options != null ? options.optString("userId", "") : "";
+
+            if (userId.isEmpty()) {
+                callbackContext.error("userId is required");
+                return;
+            }
+
+            sdk.removeOpenRoamingNetwork(
+                cordova.getActivity(),
+                userId
+            );
+
+            callbackContext.success("Network removed");
+        } catch (Exception e) {
+            callbackContext.error("Error removing network: " + e.getMessage());
         }
     }
 }
