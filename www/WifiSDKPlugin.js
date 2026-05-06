@@ -29,16 +29,6 @@ var WifiSDKPlugin = {
      */
     addNetwork: function (options, success, error) {
         exec(success, error, 'WifiSDKPlugin', 'addNetwork', [options]);
-    },
-
-    /**
-     * Remove the Passpoint/OpenRoaming network profile from the device
-     * @param {Object} options - { userId: '...' }
-     * @param {Function} success - Success callback
-     * @param {Function} error - Error callback
-     */
-    removeNetwork: function (options, success, error) {
-        exec(success, error, 'WifiSDKPlugin', 'removeNetwork', [options]);
     }
 
 };

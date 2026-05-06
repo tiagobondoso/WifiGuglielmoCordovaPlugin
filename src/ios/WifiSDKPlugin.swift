@@ -60,29 +60,4 @@ class WifiSDKPlugin: CDVPlugin {
                 })
         })
     }
-
-    @objc(removeNetwork:)
-    func removeNetwork(command: CDVInvokedUrlCommand) {
-        guard let options = command.arguments?.first as? [String: Any],
-              let userId = options["userId"] as? String, !userId.isEmpty else {
-            let result = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: "userId is required")
-            self.commandDelegate.send(result, callbackId: command.callbackId)
-            return
-        }
-
-        self.commandDelegate.run(inBackground: {
-            self.sdk.removeOpenRoamingNetwork(
-                userIdentifier: userId,
-                completionHandler: { success, response in
-                    if success {
-                        let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Network removed")
-                        self.commandDelegate.send(result, callbackId: command.callbackId)
-                    } else {
-                        let message = response.message ?? "Failed to remove network"
-                        let result = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: message)
-                        self.commandDelegate.send(result, callbackId: command.callbackId)
-                    }
-                })
-        })
-    }
 }
